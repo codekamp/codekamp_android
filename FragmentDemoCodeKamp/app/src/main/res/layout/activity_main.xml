@@ -10,11 +10,6 @@
     android:id="@+id/root_view_group"
     tools:context="in.codekamp.fragmentdemocodekamp.MainActivity">
 
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:name="in.codekamp.fragmentdemocodekamp.TopNavBar"
-        android:id="@+id/my_fragment"
-        tools:layout="@layout/top_nav_bar"></fragment>
+
 
 </RelativeLayout>

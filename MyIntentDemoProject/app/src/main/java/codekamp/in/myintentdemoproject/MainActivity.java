@@ -2,6 +2,7 @@ package codekamp.in.myintentdemoproject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -38,6 +39,20 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra(MyListActivity.ITEM_KEY, colleges);
 
         startActivityForResult(i, COLLEGE_SELECTION_REQUEST);
+
+
+    }
+
+    public void share(View view) {
+
+        Intent i = new Intent(Intent.ACTION_DIAL);
+
+        i.setData(Uri.parse("tel: 828-560-166-5"));
+
+
+        Intent chooseApp = Intent.createChooser(i, "Krpya calling app choose karein!");
+
+        startActivity(chooseApp);
 
 
     }

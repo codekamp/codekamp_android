@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -15,7 +16,7 @@ import android.widget.Button;
  */
 public class TopNavBar extends Fragment implements View.OnClickListener {
 
-    TopNavBarListner listner;
+    private TopNavBarListner listner;
 
 
     public TopNavBar() {
@@ -23,29 +24,31 @@ public class TopNavBar extends Fragment implements View.OnClickListener {
     }
 
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 
-
         View view = inflater.inflate(R.layout.top_nav_bar, container, false);
 
-        view.findViewById(R.id.button1).setOnClickListener(this);
-        view.findViewById(R.id.button2).setOnClickListener(this);
-        view.findViewById(R.id.button3).setOnClickListener(this);
+        TextView requestTextView = (TextView)view.findViewById();
+        requestTextView.setText();
 
         return view;
+
+
     }
 
     @Override
     public void onClick(View v) {
 
-        if(v.getId() == R.id.button1) {
+        if (v.getId() == R.id.button1) {
             listner.tabSelected(0);
-        } else if(v.getId() == R.id.button2) {
+        } else if (v.getId() == R.id.button2) {
             listner.tabSelected(1);
-        } else if(v.getId() == R.id.button3) {
+        } else if (v.getId() == R.id.button3) {
             listner.tabSelected(2);
         }
 
@@ -55,8 +58,8 @@ public class TopNavBar extends Fragment implements View.OnClickListener {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        if(context instanceof TopNavBarListner) {
-            this.listner = (TopNavBarListner)context;
+        if (context instanceof TopNavBarListner) {
+            this.listner = (TopNavBarListner) context;
         } else {
             throw new RuntimeException("Activity not implmenting TopNavBarListner interface");
         }

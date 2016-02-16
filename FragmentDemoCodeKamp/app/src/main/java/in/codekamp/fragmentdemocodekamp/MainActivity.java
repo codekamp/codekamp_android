@@ -12,7 +12,17 @@ public class MainActivity extends AppCompatActivity implements TopNavBar.TopNavB
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
+        BlankFragment fragment = BlankFragment.newInstance("", "");
+
+        FragmentManager manager = getFragmentManager();
+
+        FragmentTransaction transaction = manager.beginTransaction();
+
+        transaction.add(R.id.root_view_group, fragment, "the_tag");
+        transaction.commit();
     }
 
     @Override
