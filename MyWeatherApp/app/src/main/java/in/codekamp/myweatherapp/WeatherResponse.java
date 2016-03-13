@@ -14,8 +14,9 @@ public class WeatherResponse {
     public WeatherResponse(JSONObject jsonObject) {
 
         try {
-            minTemp = jsonObject.getJSONObject("temp").getDouble("min");
-            maxTemp = jsonObject.getJSONObject("temp").getDouble("max");
+            JSONObject temperate = jsonObject.getJSONObject("temp");
+            minTemp = temperate.getDouble("min");
+            maxTemp = temperate.getDouble("max");
             humidity = jsonObject.getDouble("humidity");
         } catch (Exception e) {
             e.printStackTrace();

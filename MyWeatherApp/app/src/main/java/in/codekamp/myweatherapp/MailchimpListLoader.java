@@ -22,8 +22,7 @@ public class MailchimpListLoader extends AsyncTask<String, Void, MailchimpList[]
     @Override
     protected MailchimpList[] doInBackground(String... params) {
 
-
-
+        
         String apiKey = params[0];
 
         try {

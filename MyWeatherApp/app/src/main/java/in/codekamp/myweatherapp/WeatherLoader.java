@@ -50,7 +50,8 @@ public class WeatherLoader extends AsyncTask<WeatherRequest, Void, WeatherRespon
             WeatherResponse[] responseArray = new WeatherResponse[weatherArray.length()];
 
             for(int i = 0; i < weatherArray.length(); i++) {
-                WeatherResponse response = new WeatherResponse((JSONObject)weatherArray.get(i));
+                JSONObject dayWeather = (JSONObject)weatherArray.get(i);
+                WeatherResponse response = new WeatherResponse(dayWeather);
 
                 responseArray[i] = response;
             }

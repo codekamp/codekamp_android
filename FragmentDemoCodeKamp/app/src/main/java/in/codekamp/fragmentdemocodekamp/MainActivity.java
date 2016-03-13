@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements TopNavBar.TopNavB
         FragmentTransaction transaction = manager.beginTransaction();
 
         transaction.add(R.id.root_view_group, fragment, "the_tag");
+        transaction.setTransitionStyle(FragmentTransaction.)
         transaction.commit();
     }
 
