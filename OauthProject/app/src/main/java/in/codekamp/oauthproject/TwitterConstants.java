@@ -8,9 +8,9 @@ public class TwitterConstants {
 
     public static final String TEMPORARY_TOKEN_REQUEST_URL = "https://api.twitter.com/oauth/request_token";
 
-    public static final String AUTHORIZATION_VERIFIER_SERVER_URL = "https://api.twitter.com/oauth/authorize";
+    public static final String AUTHORIZATION_VERIFIER_SERVER_URL = "https://www.linkedin.com/uas/oauth2/authorization";
 
-    public static final String TOKEN_SERVER_URL = "https://api.twitter.com/oauth/access_token";
+    public static final String TOKEN_SERVER_URL = "https://www.linkedin.com/uas/oauth2/accessToken";
 
     public static final String REDIRECT_URL = "http://localhost/Callback";
 

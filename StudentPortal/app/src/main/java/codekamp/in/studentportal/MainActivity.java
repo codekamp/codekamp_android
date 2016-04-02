@@ -2,14 +2,19 @@ package codekamp.in.studentportal;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.MotionEvent;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerView.OnItemTouchListener {
 
-    ListView studentListView;
+    RecyclerView studentRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,15 +25,74 @@ public class MainActivity extends AppCompatActivity {
 
         students.add(new Student("Suresh", "AKGEC001", 75.5));
         students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
+        students.add(new Student("Suresh", "AKGEC001", 75.5));
+        students.add(new Student("Ramesh", "ABES003", 85.5));
 
 
 
-        studentListView = (ListView)findViewById(R.id.studentListView);
+        studentRecyclerView = (RecyclerView)findViewById(R.id.studentRecyclerView);
 
-        MyCustomAdapter adapter = new MyCustomAdapter(this, students);
+        studentRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
-        studentListView.setAdapter(adapter);
+        MyCustomRecyclerAdapter adapter = new MyCustomRecyclerAdapter(students);
 
+        studentRecyclerView.setAdapter(adapter);
+
+        studentRecyclerView.addOnItemTouchListener(this);
+
+
+
+
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+    }
+
+    @Override
+    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
 
     }
 }

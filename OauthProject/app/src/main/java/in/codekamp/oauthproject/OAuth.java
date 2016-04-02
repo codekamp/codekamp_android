@@ -55,7 +55,7 @@ public class OAuth {
         // setup credential store
         SharedPreferencesCredentialStore credentialStore =
                 new SharedPreferencesCredentialStore(context,
-                        "twitter", JSON_FACTORY);
+                        "oauth", JSON_FACTORY);
         // setup authorization flow
         AuthorizationFlow.Builder flowBuilder = new AuthorizationFlow.Builder(
                 BearerToken.authorizationHeaderAccessMethod(),

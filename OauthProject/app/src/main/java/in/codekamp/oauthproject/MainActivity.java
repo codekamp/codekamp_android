@@ -1,5 +1,7 @@
 package in.codekamp.oauthproject;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,21 +32,21 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
+
             ClientParametersAuthentication keys = new ClientParametersAuthentication(TwitterConstants.CONSUMER_KEY,
                     TwitterConstants.CONSUMER_SECRET);
 
-            OAuth oauth = OAuth.newInstance(
+            OAuth oauth1 = OAuth.newInstance(
                     getApplicationContext(),
                     getSupportFragmentManager(),
                     keys,
                     TwitterConstants.AUTHORIZATION_VERIFIER_SERVER_URL,
                     TwitterConstants.TOKEN_SERVER_URL,
                     TwitterConstants.REDIRECT_URL,
-                    Lists.<String> newArrayList(),
-                    TwitterConstants.TEMPORARY_TOKEN_REQUEST_URL);
+                    Lists.<String> newArrayList());
 
             try {
-                Credential credentials = oauth.authorize10a("All in one!").getResult();
+                Credential credentials = oauth1.authorizeExplicitly("All in one!").getResult();
                 Log.d("codekamp", credentials.getAccessToken());
             } catch (IOException e) {
                 e.printStackTrace();

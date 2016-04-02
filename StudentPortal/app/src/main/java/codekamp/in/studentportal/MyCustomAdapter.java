@@ -1,6 +1,7 @@
 package codekamp.in.studentportal;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,13 @@ public class MyCustomAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = inflater.inflate(R.layout.student_list_item, null);
+
+        View view = convertView;
+
+        if (view == null) {
+            view = inflater.inflate(R.layout.student_list_item, null);
+            Log.d("codekamp", "new view inflated for row " + position);
+        }
 
         TextView studentNameTextView = (TextView)view.findViewById(R.id.name_text_view);
         TextView attendanceTextView = (TextView)view.findViewById(R.id.attendance_text_view);
