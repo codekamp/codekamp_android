@@ -32,9 +32,4 @@ public class SecondActivity extends CodeKampActivity {
 
         return intent;
     }
-
-    public static Contact getContact(Intent intent) {
-        return (Contact)intent.getSerializableExtra(RESULT_CONTACT);
-    }
-
 }

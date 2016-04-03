@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SecondActivity"></activity>
+        <service android:name=".VideoUploadService" android:exported="false" />
     </application>
 
 </manifest>
