@@ -1,11 +1,17 @@
 package in.codekamp.codekamp;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.View;
 import android.widget.EditText;
 
-public class MainActivity extends CodeKampActivity {
+public class MainActivity extends CodeKampActivity implements ServiceConnection {
+
+    private AnotherVideoUploadService mUploadService;
 
     private static final int CONTACT_DETAIL_REQEUST = 1;
     private static final int CONTACT_CREATE_REQEUST = 2;
@@ -22,9 +28,9 @@ public class MainActivity extends CodeKampActivity {
 
     public void onClick(View view) {
 
-        Intent intent = VideoUploadService.newIntent(this, mVideoUrlEditText.getText().toString());
+        Intent intent = AnotherVideoUploadService.newIntent(this, mVideoUrlEditText.getText().toString());
 
-        startService(intent);
+        bindService(intent, this, Context.BIND_AUTO_CREATE);
 
     }
 
@@ -33,5 +39,16 @@ public class MainActivity extends CodeKampActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
 
+    }
+
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder service) {
+        AnotherVideoUploadService.ServiceBinder binder = (AnotherVideoUploadService.ServiceBinder)service;
+        this.mUploadService = binder.getService();
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+        this.mUploadService = null;
     }
 }

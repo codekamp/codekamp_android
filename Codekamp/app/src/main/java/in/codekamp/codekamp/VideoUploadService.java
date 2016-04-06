@@ -18,19 +18,6 @@ public class VideoUploadService extends IntentService {
         super(SERVICE_THREAD);
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        Log.d("codekamp", "VideoUploadService Creaetd");
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d("codekamp", "upload requested for video uri: " + intent.getStringExtra(VIDEO_URI));
-        return super.onStartCommand(intent, flags, startId);
-    }
-
     public static Intent newIntent(Context context, String videoUri) {
         Intent intent = new Intent(context, VideoUploadService.class);
         intent.putExtra(VIDEO_URI, videoUri);
