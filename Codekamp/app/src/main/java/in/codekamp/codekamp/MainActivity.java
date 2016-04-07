@@ -1,5 +1,8 @@
 package in.codekamp.codekamp;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +18,7 @@ public class MainActivity extends CodeKampActivity implements ServiceConnection 
 
     private static final int CONTACT_DETAIL_REQEUST = 1;
     private static final int CONTACT_CREATE_REQEUST = 2;
+    private int i = 0;
 
     private EditText mVideoUrlEditText;
 
@@ -28,10 +32,26 @@ public class MainActivity extends CodeKampActivity implements ServiceConnection 
 
     public void onClick(View view) {
 
-        Intent intent = AnotherVideoUploadService.newIntent(this, mVideoUrlEditText.getText().toString());
+        i++;
 
-        bindService(intent, this, Context.BIND_AUTO_CREATE);
+        Intent intent1 = SecondActivity.newIntent(this.getApplicationContext(), "hello");
+        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
+        intent1.putExtra("video_uri", "a/b/c.mp4");
+
+        PendingIntent intentForNotification = PendingIntent.getActivity(this, 10, intent1, PendingIntent.FLAG_ONE_SHOT);
+
+        Notification.Builder notificationBuilder = new Notification.Builder(this);
+
+        notificationBuilder.setSmallIcon(R.mipmap.ic_launcher);
+        notificationBuilder.setContentTitle("Video uploaded successfully " + i);
+        notificationBuilder.setContentText("This is description of notification");
+        notificationBuilder.setContentIntent(intentForNotification);
+
+        Notification notification = notificationBuilder.build();
+
+        NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(1, notification);
     }
 
     @Override

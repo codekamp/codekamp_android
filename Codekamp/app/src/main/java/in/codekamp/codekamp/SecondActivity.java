@@ -1,5 +1,6 @@
 package in.codekamp.codekamp;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,9 @@ public class SecondActivity extends CodeKampActivity {
         String contactId = getIntent().getStringExtra(EXTRA_CONTACT_ID);
 
         mDummyTextView.setText("detail of contact: " + contactId);
+
+        NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.cancel(1);
     }
 
     public static Intent newIntent(Context context, String contactId) {
