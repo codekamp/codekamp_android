@@ -24,9 +24,6 @@ public class SecondActivity extends CodeKampActivity {
         String contactId = getIntent().getStringExtra(EXTRA_CONTACT_ID);
 
         mDummyTextView.setText("detail of contact: " + contactId);
-
-        NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.cancel(1);
     }
 
     public static Intent newIntent(Context context, String contactId) {
@@ -35,5 +32,10 @@ public class SecondActivity extends CodeKampActivity {
         intent.putExtra(EXTRA_CONTACT_ID, contactId);
 
         return intent;
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
     }
 }
