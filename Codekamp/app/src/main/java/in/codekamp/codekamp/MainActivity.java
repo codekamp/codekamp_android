@@ -35,7 +35,7 @@ public class MainActivity extends CodeKampActivity implements ServiceConnection 
     public void onClick(View view) {
 
         Intent intent1 = SecondActivity.newIntent(this.getApplicationContext(), "hello");
-        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_NO_HISTORY);
 
         TaskStackBuilder builder = TaskStackBuilder.create(this);
 
@@ -47,9 +47,10 @@ public class MainActivity extends CodeKampActivity implements ServiceConnection 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this);
 
         notificationBuilder.setSmallIcon(R.mipmap.ic_launcher);
-        notificationBuilder.setContentTitle("Video uploaded successfully " + i);
+        notificationBuilder.setContentTitle("Video uploading");
         notificationBuilder.setContentText("This is description of notification");
         notificationBuilder.setContentIntent(intentForNotification);
+//        notificationBuilder.setProgress(0, 0, true);
 
         NotificationCompat.BigTextStyle expandableStyle = new NotificationCompat.BigTextStyle();
         expandableStyle.bigText("This is the detail which will be hidded normally. You can add more txt here");
@@ -57,13 +58,46 @@ public class MainActivity extends CodeKampActivity implements ServiceConnection 
         notificationBuilder.setStyle(expandableStyle);
 
         notificationBuilder.setAutoCancel(true);
+        notificationBuilder.setPriority(Notification.PRIORITY_HIGH);
+
+
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent intentForAction = PendingIntent.getActivity(this, 1, intent, PendingIntent.FLAG_ONE_SHOT);
+
+        notificationBuilder.addAction(R.mipmap.ic_launcher, "Start Main", intentForAction);
         
 
 
         Notification notification = notificationBuilder.build();
 
+//        notification.flags = Notification.FLAG_ONGOING_EVENT;
         NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(1, notification);
+
+//        for (int i =0; i < 100; i++) {
+//            notificationBuilder.setProgress(100, i, false);
+//            notification = notificationBuilder.build();
+//            notification.flags = Notification.FLAG_ONGOING_EVENT;
+//            notificationManager.notify(1, notification);
+//
+//            try {
+//                Thread.sleep(200);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+
+
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//
+//        notificationBuilder.setProgress(0, 0, false);
+//        notificationBuilder.setContentTitle("Video uploaded!");
+//        notification = notificationBuilder.build();
+//        notificationManager.notify(1, notification);
 
         // SingleTask
         // 1. can't open in two task stacks.
