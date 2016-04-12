@@ -10,12 +10,9 @@ import android.util.Log;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "codekamp";
-    public static final String STUDENTS_TABLE = "students";
-    private static final int VERSION = 4;
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, VERSION);
+        super(context, Database.NAME, null, Database.VERSION);
     }
 
 
@@ -23,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //code to create Database schema
         Log.d("codekamp", "oncreate of database helper called");
-        db.execSQL("CREATE TABLE " + STUDENTS_TABLE + " ( _id INT PRIMARY KEY, name VARCHAR(255) NOT NULL, email VARCHAR(255) );");
+        db.execSQL(Database.StudentTable.CREATE_QUERY);
 
 
     }

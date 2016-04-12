@@ -42,6 +42,11 @@ public class MainActivity extends CodeKampActivity implements ServiceConnection 
         builder.addParentStack(SecondActivity.class);
         builder.addNextIntent(intent1);
 
+        //   https://git-scm.com/downloads
+
+
+        getContentResolver();
+
         PendingIntent intentForNotification = builder.getPendingIntent(0, PendingIntent.FLAG_ONE_SHOT);
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this);

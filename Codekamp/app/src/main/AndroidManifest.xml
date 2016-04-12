@@ -20,6 +20,9 @@
             android:taskAffinity=""
             android:parentActivityName=".MainActivity"
             android:noHistory="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
 
         <service android:name=".VideoUploadService" android:exported="false" />

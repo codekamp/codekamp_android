@@ -14,25 +14,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DatabaseHelper dbHelper = new DatabaseHelper(this);
 
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        long studentId = Database.StudentTable.insert(this, "suresh", "suresh@gmail.com");
 
-        ContentValues values = new ContentValues();
-        values.put("name", "Suresh");
-        values.put("email", "suresh@5star.com");
-
-        long id = db.insert(DatabaseHelper.STUDENTS_TABLE, null, values);
-        Log.d("codekamp", "id of inserted column is " + id);
-
-        ContentValues values1 = new ContentValues();
-        values1.put("name", "Ramesh");
-        values1.put("email", "ramesh@5star.com");
-
-        long id1 = db.insert(DatabaseHelper.STUDENTS_TABLE, null, values1);
-        Log.d("codekamp", "id of inserted column is " + id1);
-
-
+        Database.StudentTable.delete(this, studentId);
 
 
 
