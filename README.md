@@ -1,4 +1,14 @@
+FORMAT: 1A
+
 # CodeKamp Connections API
+
+# CodekampApiV1ControllersAuthController
+
+# Users [/users]
+User resource.
+
+## Show User [GET /users/{id}]
+Fetch details of a single user
 
 # Contacts [/contacts]
 User resource.
@@ -37,7 +47,7 @@ Creates a Contact for given details
                  *     last_name: (alpha_spaces, optional) - First name of Contact.
                  *     birthday: (date, optional) - Birthday of Contact.
                  *     emails: (array(email), optional) - E-mail ids of Contact.
-                 *     phones: (array(Phone Number in E164 Format), optional) - Phone Numbers of Contact.
+                 *     phone_numbers: (array(Phone Number in E164 Format), optional) - Phone Numbers of Contact.
                  *     ug_college_id: (colleges:id, optional) - UG College of Contact.
                  *     ug_course_id: (ug_courses:id, optional) - UG Course of Contact.
                  *     ug_entry_year: (integer, optional) - Year when Contact underwent UG.
@@ -57,7 +67,7 @@ Update Contact Details of given id
                  *     last_name: (alpha_spaces, optional) - First name of Contact.
                  *     birthday: (date, optional) - Birthday of Contact.
                  *     emails: (array(email), optional) - E-mail ids of Contact.
-                 *     phones: (array(Phone Number in E164 Format), optional) - Phone Numbers of Contact.
+                 *     phone_numbers: (array(Phone Number in E164 Format), optional) - Phone Numbers of Contact.
                  *     ug_college_id: (colleges:id, optional) - UG College of Contact.
                  *     ug_course_id: (ug_courses:id, optional) - UG Course of Contact.
                  *     ug_entry_year: (integer, optional) - Year when Contact underwent UG.
@@ -116,15 +126,35 @@ Fetch details of a single action
 Deletes the action of given id
 
 # Batches [/batches]
-Class BatchController
+Batch Resource
 
-## GET
+## List Batches [GET /batches/{?page,limit}]
+List all the batches in pagination of 10 per page
 
+## Show Single Batch [GET /batches/{$id}]
+Fetch Details of a single Batch
 
-## GET
+## Store Batch [POST /batches/]
+Creates a Batch for given details
 
++ Request (application/x-www-form-urlencoded)
+    + Body
 
-## POST
+                 *     title: (string, required) - E-mail ids of Contact.
+                 *     fee: (integer, required) - Fee of that batch.
+                 *     duration: (integer, required) - Proposed duration of Batch in hours.
+                 *     start_date: (date, required) - Starting date of the Batch.
+                 *     end_date: (date, optional) - approximately ending date of Batch.
+                 *     faculty_id: (faculty:id, optional) - Id of faculty teaching that particular Batch.
 
+## Delete Batch [DELETE /batches/{$id}]
+Deletes the Batch of given Id
 
-## DELETE
+# Colleges [/colleges]
+College resource.
+
+## List Colleges [GET /colleges]
+Lists all the saves Colleges in single response
+
+## Show single College [GET /colleges/{id}]
+Fetch details of a single College
