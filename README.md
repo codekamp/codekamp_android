@@ -81,32 +81,41 @@ Update Contact Details of given id
 Deletes the contact of given id
 
 # Remarks [/remarks]
-Class RemarkController
+Remark Resource.
 
-## GET
+## List Remarks [GET /remarks{?page,limit}]
+Lists all the remarks
 
++ Parameters
+    + contact_id: (contacts:id, optional) - If passed, Returns Remark(s) made on passed Contact Id. If both contact_id and action_id are passed, contact_id will be considered
+    + action_id: (actions:id, optional) - If passed, Returns Remark(s) made on passed Action Id. If both contact_id and action_id are passed, contact_id will be considered
 
-## GET
+## Show Remark [GET /remarks/{$id}]
+Fetch details of a single remark
 
-
-## PUT
-
-
-+ Request (application/x-www-form-urlencoded)
-    + Body
-
-            user_id:45&remark:someRemark&detail:detailOfTheRemark&action_id:34
-
-## POST
-
+## Store Remark [POST /remarks]
+Creates a remark from given detail
 
 + Request (application/x-www-form-urlencoded)
     + Body
 
-            user_id:34&remark:someRemark&detail:detailOfTheRemark&action_id:45
+                 *     user_id: (user:id, required) - Id of user who makes the remark.
+                 *     contact_id: (contact:id, required if action_id is not passed) - Id of contact for which the remark is made. If both contact_id and action_id is passed, action_id will be considered.
+                 *     action_id: (action:id, required if contact_id is not passed) - Id of action for which the remark is made. If both contact_id and action_id is passed, action_id will be considered.
+                 *     remark: (alpha_spaces, required) - Title of the remark.
+                 *     detail: (alpha_spaces, required) - Detail of remark.
 
-## DELETE
+## Update Remark [PUT /remarks/{id}]
+Updates the remark with given remark id and given new details
 
++ Request (application/x-www-form-urlencoded)
+    + Body
+
+                 *     remark: (alpha_spaces, required) - Title of the remark.
+                 *     detail: (alpha_spaces, required) - Detail of remark.
+
+## Delete Remark [DELETE /remarks/{$id}]
+Deletes the remark with given id
 
 # Actions [/actions]
 Action resource.
@@ -158,3 +167,16 @@ Lists all the saves Colleges in single response
 
 ## Show single College [GET /colleges/{id}]
 Fetch details of a single College
+
+# SMS [/sms]
+SMS resource.
+
+## Send SMS [POST /sms]
+Creates a Contact for given details
+
++ Request (application/x-www-form-urlencoded)
+    + Body
+
+                 *     contact_ids: (array(contact:id), required) - ID of contacts to whom message is to be sent.
+                 *     message: (string, length:1600, optional) - Message that is to be sent, upto 1600 Characters.
+                 *     from_number: (array(Phone Number in E164 Format), optional) - from number to be displayed.
