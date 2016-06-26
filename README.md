@@ -4,6 +4,8 @@ FORMAT: 1A
 
 # CodekampApiV1ControllersAuthController
 
+# CodekampApiV1ControllersEmailController
+
 # Users [/users]
 User resource.
 
@@ -77,8 +79,11 @@ Update Contact Details of given id
                  *     facebook_id: (string, optional) - Facebook id of Contact.
                  *     linkedin_id: (string, optional) - LinkedIn id of Contact.
 
-## Delete User [DELETE /contacts/{id}]
-Deletes the contact of given id
+## Delete User [DELETE /contacts]
+Deletes the contact of given id(s)
+
++ Parameters
+    + contact_id: (array(contacts:id), required) - Id(s) of contacts to be deleted.
 
 # Remarks [/remarks]
 Remark Resource.
@@ -180,3 +185,14 @@ Creates a Contact for given details
                  *     contact_ids: (array(contact:id), required) - ID of contacts to whom message is to be sent.
                  *     message: (string, length:1600, optional) - Message that is to be sent, upto 1600 Characters.
                  *     from_number: (array(Phone Number in E164 Format), optional) - from number to be displayed.
+
+# CodekampApiV1ControllersSmsActionController
+
+# Technologies [/technologies]
+Technology resource.
+
+## List Technologies [GET /technologies]
+Lists all the saved Technologies in single response
+
+## Show single Technology [GET /technologies/{id}]
+Fetch details of a single Technology
