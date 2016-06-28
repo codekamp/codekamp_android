@@ -4,13 +4,52 @@ FORMAT: 1A
 
 # CodekampApiV1ControllersAuthController
 
-# CodekampApiV1ControllersEmailController
+# Email [/services/email]
+Class EmailController
+
+## Lists Mailchimp lists [GET /services/email/lists]
+
+
+## Create a list on mailchimp [POST /services/email/lists]
+
+
++ Request (application/x-www-form-urlencoded)
+    + Body
+
+                 *     contact_ids: (array(contact:id), required) - ID of contacts to whom message is to be sent.
+                 *     campaign_name: (string, required) - Name of campaign/list that is to be created on Mailchimp, minimum 4 Characters.
+                 *     template_id: (integer), required) - ID of the template that is to added to the campaign created on Mailchimp.
+
+## Fetch templates from mailchimp [GET /services/email/templates]
+
 
 # Users [/users]
 User resource.
 
+## List Users [GET /users{?page}]
+Lists all the users with pagination of 10 users per page
+
 ## Show User [GET /users/{id}]
 Fetch details of a single user
+
+## Store User [POST /users]
+Creates a User of given details
+
++ Request (application/x-www-form-urlencoded)
+    + Body
+
+            name=foo&email=foo@bar.com&password=secret&access_level=admin
+
+## Update User [PUT /users/{id}]
+Update User Details of given id (Name and Email only)
+
++ Request (application/x-www-form-urlencoded)
+    + Body
+
+            name=newFoo&email=newFoo@newBar.com
+
+## Delete User [DELETE /users/{id}]
+Deletes the user of given id
 
 # Contacts [/contacts]
 User resource.
@@ -187,12 +226,3 @@ Creates a Contact for given details
                  *     from_number: (array(Phone Number in E164 Format), optional) - from number to be displayed.
 
 # CodekampApiV1ControllersSmsActionController
-
-# Technologies [/technologies]
-Technology resource.
-
-## List Technologies [GET /technologies]
-Lists all the saved Technologies in single response
-
-## Show single Technology [GET /technologies/{id}]
-Fetch details of a single Technology
