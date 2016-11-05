@@ -1,11 +1,10 @@
 package in.codekamp.databaseconnectorapp;
 
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+
+import in.codekamp.databaseconnectorapp.Database.Database;
+import in.codekamp.databaseconnectorapp.Database.StudentCursorWrapper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,17 +14,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        long studentId = Database.StudentTable.insert(this, "suresh", "suresh@gmail.com");
-
-        Database.StudentTable.delete(this, studentId);
+        StudentCursorWrapper cursor = Database.StudentTable.all(this);
 
 
+        cursor.moveToFirst();
+        Student student1 = cursor.getStudent();
 
 
-
-
-
-
+        student1.setEmail("hello@gmail.com");
+        student1.save(this);
 
 
 
@@ -35,13 +32,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        String[] columns = {"name", "email"};
-        Cursor cursor = db.query(DatabaseHelper.STUDENTS_TABLE, columns, null, null, null, null, null);
 
-        int nameIndex = cursor.getColumnIndex("name");
-        int emailIndex = cursor.getColumnIndex("email");
-        while (cursor.moveToNext()) {
-            Log.d("codekamp", "name: " + cursor.getString(nameIndex) + ", email:" + cursor.getString(emailIndex));
-        }
+
+
+
+
+
+
+
+
     }
 }

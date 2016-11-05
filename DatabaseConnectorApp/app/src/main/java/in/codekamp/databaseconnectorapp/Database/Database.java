@@ -1,11 +1,13 @@
-package in.codekamp.databaseconnectorapp;
+package in.codekamp.databaseconnectorapp.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.annotation.Nullable;
 
 import java.util.List;
+
+import in.codekamp.databaseconnectorapp.Student;
 
 /**
  * Created by cerebro on 12/04/16.
@@ -62,8 +64,13 @@ public class Database {
             return null;
         }
 
-        public static List<Student> all(Context context, String orderBy) {
-            return null;
+        public static StudentCursorWrapper all(Context context) {
+            DatabaseHelper dbHelper = new DatabaseHelper(context);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            String[] columns = {Columns.NAME, Columns.EMAIL, Columns.ID};
+            Cursor cursor = db.query(StudentTable.NAME, columns, null, null, null, null, null);
+
+            return new StudentCursorWrapper(cursor);
         }
 
     }

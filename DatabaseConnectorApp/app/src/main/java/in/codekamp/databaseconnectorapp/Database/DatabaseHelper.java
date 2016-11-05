@@ -1,4 +1,4 @@
-package in.codekamp.databaseconnectorapp;
+package in.codekamp.databaseconnectorapp.Database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
